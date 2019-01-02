@@ -8,7 +8,7 @@
             padding: 5px;
         }
     </style>
-    <p>My paragraph</p>
+    <p><slot name="my-text">My paragraph</slot></p>
 </template>
 <body>
 <script>
@@ -30,6 +30,10 @@ customElements.define('my-paragraph',
 <p>This is a standard paragraph</p>
 
 <h3>HTML Template using custom element</h3>
-<my-paragraph></my-paragraph>
+This will show the default text:
+<my-paragraph>Yolo</my-paragraph>
+<h4>HTML Template using custom element, taking advantage of slot</h4>
+This will take the given "slot" text:
+<my-paragraph><span slot="my-text">Something custom</span></my-paragraph>
 </body>
 </html>
