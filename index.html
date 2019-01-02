@@ -110,5 +110,33 @@ This will take the given "slot" text:
     loaded but may subsequently be instantiated during
     runtime using JavaScript.</span>
 </element-details>
+
+<h2>This template tag uses an external stylesheet</h2>
+<template id="card-template">
+    <link href="style.css" rel="stylesheet" />
+    <div>
+    <slot name="content">
+        This is a card.
+    </slot>
+    </div>
+</template>
+
+<script>
+/* Custom Postit Card */
+customElements.define('my-postit', 
+    class extends HTMLElement {
+        constructor() {
+            super();
+            let template = document.getElementById('card-template');
+            let templateContent = template.content;
+            const shadowRoot = this.attachShadow({mode: 'open'})
+                .appendChild(templateContent.cloneNode(true));
+    }
+});
+</script>
+
+<my-postit></my-postit>
+<h3>This template tag uses an external stylesheet &amp; custom content</h3>
+<my-postit><span slot="content">My own content</slot></my-postit>
 </body>
 </html>
