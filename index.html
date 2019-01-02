@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<template id="my-paragraph">
+    <style>
+        p {
+            color: white;
+            background-color: #666;
+            padding: 5px;
+        }
+    </style>
+    <p>My paragraph</p>
+</template>
+<body>
+<script>
+
+customElements.define('my-paragraph', 
+    class extends HTMLElement {
+        constructor() {
+            super();
+            let template = document.getElementById('my-paragraph');
+            let templateContent = template.content;
+            const shadowRoot = this.attachShadow({mode: 'open'})
+                .appendChild(templateContent.cloneNode(true));
+    }
+});
+
+</script>
+<h1>Web Components Templates</h1>
+<h2>Standard Paragraph</h2>
+<p>This is a standard paragraph</p>
+
+<h3>HTML Template using custom element</h3>
+<my-paragraph></my-paragraph>
+</body>
+</html>
